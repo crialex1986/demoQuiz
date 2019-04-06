@@ -51,6 +51,13 @@ $botman->hears('listar quizzes|listar', function ($bot) {
     		$bot->reply("Ups, no hay cuestionarios para mostrar.");
 });
 
+//------------------------------------------------------------
+$botman->hears('iniciar quiz {id}', function ($bot, $id) {
+	$bot->startConversation(
+new \App\Conversations\RealizarQuizConversacion($id));
+})->stopsConversation();
+
+
 
 //Comportamiento por defecto
 $botman->fallback(function ($bot) {
