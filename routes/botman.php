@@ -24,6 +24,16 @@ $botman->hears('/ayuda', function ($bot) {
 	}
 });
 
+$botman->hears('acerca de|acerca', function ($bot) {
+	$msj = "Este bot de charla fue desarrollado por:\n".
+       	 "Cristian Salazar <cristian.salazarp@autonoma.edu.co>\n".
+       	 "Durante las Jornadas de Ingeniería de 2019\n".
+       	 "de la Universidad Autónoma.";
+
+	$bot->reply($msj);
+});
+
+
 //Comportamiento por defecto
 $botman->fallback(function ($bot) {
 	$bot->reply("No entiendo que quieres decir, vuelve a intentarlo.");
