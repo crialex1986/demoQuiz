@@ -8,6 +8,8 @@ $botman->hears('/start', function ($bot) {
 	$bot->reply('Hola ' . $nombres . ', bienvenido al bot SimpleQuizzes!');
 });
 
+//--------------------------------------------------------------------
+
 $botman->hears('/ayuda', function ($bot) {
 	$ayuda = ['/ayuda' => 'Mostrar este mensaje de ayuda',
           	'acerca de|acerca' => 'Ver la información quien desarrollo este lindo bot',
@@ -24,6 +26,8 @@ $botman->hears('/ayuda', function ($bot) {
 	}
 });
 
+//--------------------------------------------------------------------
+
 $botman->hears('acerca de|acerca', function ($bot) {
 	$msj = "Este bot de charla fue desarrollado por:\n".
        	 "Cristian Salazar <cristian.salazarp@autonoma.edu.co>\n".
@@ -31,6 +35,20 @@ $botman->hears('acerca de|acerca', function ($bot) {
        	 "de la Universidad Autónoma.";
 
 	$bot->reply($msj);
+});
+
+//--------------------------------------------------------------------
+
+$botman->hears('listar quizzes|listar', function ($bot) {
+	$quizzes = \App\Quiz::orderby('titulo', 'asc')->get();
+
+	foreach($quizzes as $quiz)
+	{
+    		$bot->reply($quiz->id."- ".$quiz->titulo);
+	}
+
+	if(count($quizzes) == 0)
+    		$bot->reply("Ups, no hay cuestionarios para mostrar.");
 });
 
 
